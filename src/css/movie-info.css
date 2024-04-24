@@ -9,17 +9,17 @@ h1{
 
 h2{
     font-size: 35px;
-    padding-top: 5%;
-    padding-bottom: 5%;
-}
-
-.backgroundImage{
-    flex: 1;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 main {
     display: flex;
-    justify-content: space-between;
+}
+
+.poster{
+    max-width: auto;
+    max-height: 300px;
 }
 
 .infoSide{

@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <img src="../../assets/oppenheimer.jpg" alt="Film poster" draggable="False">
+        <img class="poster" src="../../assets/oppenheimer.jpg" alt="Film poster" draggable="False">
     </main>
     <footer>
         <div class="imgFooter">
