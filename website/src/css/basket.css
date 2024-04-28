@@ -22,7 +22,7 @@ img{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-}
+}   
 
 button {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
