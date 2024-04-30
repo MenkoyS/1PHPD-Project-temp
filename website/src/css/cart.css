@@ -1,0 +1,52 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+}
+
+.cart {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid purple;
+  border-radius: 10px;
+  background-color: #2a2a2a;
+}
+
+.film {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.film img {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.film span {
+  flex: 1;
+}
+
+.total {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.carousel img {
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+}
