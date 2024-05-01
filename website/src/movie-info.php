@@ -2,7 +2,8 @@
 require_once 'db_connect.php';
 
 $id = $_GET['id'] ?? null;
-$message = ''; 
+$message = '';
+$director = $_GET['director'] ?? null;
 
 if (!$id) {
     $message = "ID not provided.";
@@ -44,41 +45,84 @@ if (!$id) {
 </head>
 
 <body>
-    <main>
-        <div class="infoSide">
-            <h1><?php echo $film['title']; ?></h1>
-            <h2>Actors :</h2>
-            <h3><?php echo $film['actors']; ?></h3>
-            <h2>Price : <?php echo $film['price']; ?> $</h2>
-            <div class="divcenter">
-                <form method="POST">
-                    <input type="hidden" name="id" value="<?php echo $film['id']; ?>">
-                    <button type="submit">
-                        <span class="transition"></span>
-                        <span class="gradient"></span>
-                        <span class="label">Add to cart</span>
-                    </button>
-                </form>
-                <?php if (!empty($message)) : ?>
-                    <div class="message"><?php echo $message; ?></div>
-                <?php endif; ?>
-            </div>
-            <div>
-                <h2>Director's other films :</h2>
-                <div class="filmBox">
-                    <img class="filmBoxImg" src="<?php echo $film['image_link']; ?>" alt="Film mis en avant" draggable="False">
-                    <p class="filmBoxText"><?php echo $film['title']; ?></p>
+    <nav>
+        <ul>
+            <?php if (isset($_SESSION['username'])): ?>
+                <li><a href="#">Welcome, <?php echo $_SESSION['username']; ?></a></li>
+                <li><a href="logout.php">Logout</a></li>
+                <li><a href="cart.php">Cart</a></li>
+            <?php else: ?>
+                <li><a href="login-page.php">Register</a></li>
+                <li><a href="login-page.php">Login</a></li>
+            <?php endif; ?>
+            <li><a href="index.php">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Genre <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="./action.php">Action</a>
+                    <a href="./drama.php">Drama</a>
                 </div>
-            </div>
+            </li>
+        </ul>
+    </nav>
+
+
+
+    <div class="divcenter">
+        <h1><?php echo $film['title']; ?></h1>
+        <img src="<?php echo $film['image_link']; ?>" alt="Film poster" draggable="False">
+        <h2>Actors :</h2>
+        <h3><?php echo $film['actors']; ?></h3>
+        <h2>Price : <?php echo $film['price']; ?> $</h2>
+        <form method="POST">
+            <input type="hidden" name="id" value="<?php echo $film['id']; ?>">
+            <button type="submit">
+                <span class="transition"></span>
+                <span class="gradient"></span>
+                <span class="label">Add to cart</span>
+            </button>
+        </form>
+        <?php if (!empty($message)): ?>
+            <div class="message"><?php echo $message; ?></div>
+        <?php endif; ?>
+    </div>
+    <div>
+        <h2>Director's other films :</h2>
+        <div class="posters">
+            <?php
+            $count = 0;
+            try {
+                $stmt = $pdo->query("SELECT * FROM film ORDER BY id LIMIT 3");
+                $posters = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($posters as $poster) {
+                    if ($count % 3 == 0 && $count != 0) {
+                        echo '</div><div class="posters">';
+                    }
+                    echo '<div class="poster">';
+                    echo '<a href="movie-info.php?id=' . $poster['id'] . '"><img src="' . $poster['image_link'] . '" alt="' . $poster['title'] . '" </a>';
+                    echo '<h2><a href="movie-info.php?id=' . $poster['id'] . '">' . $poster['title'] . '</a></h2>';
+                    echo '<h3>Director : ' . $poster['director'] . '</h3>';
+                    echo '<button><a href="movie-info.php?id=' . $poster['id'] . '">View more</a></button>';
+                    echo '</div>';
+                    $count++;
+                }
+            } catch (PDOException $e) {
+                echo "Error fetching posters: " . $e->getMessage();
+            }
+            ?>
         </div>
-        <img class="poster" src="<?php echo $film['image_link']; ?>" alt="Film poster" draggable="False">
-    </main>
+    </div>
     <footer>
         <div class="imgFooter">
-            <a href="https://youtube.com" target="_blank"><img src="./css/assets/youtube.png" alt="Youtube Weeklymotion"></a>
-            <a href="https://instagram.com" target="_blank"><img src="./css/assets/insta.png" alt="Instagram Weeklymotion"></a>
-            <a href="https://facebook.com" target="_blank"><img src="./css/assets/facebook.png" alt="Facebook Weeklymotion"></a>
-            <a href="https://twitter.com" target="_blank"><img src="./css/assets/twitter.png" alt="Twitter Weeklymotion"></a>
+            <a href="https://youtube.com" target="_blank"><img src="./css/assets/youtube.png"
+                    alt="Youtube Weeklymotion"></a>
+            <a href="https://instagram.com" target="_blank"><img src="./css/assets/insta.png"
+                    alt="Instagram Weeklymotion"></a>
+            <a href="https://facebook.com" target="_blank"><img src="./css/assets/facebook.png"
+                    alt="Facebook Weeklymotion"></a>
+            <a href="https://twitter.com" target="_blank"><img src="./css/assets/twitter.png"
+                    alt="Twitter Weeklymotion"></a>
         </div>
         <div class="txtFooter">
             <p>© 2024 Weeklymotion</p>
