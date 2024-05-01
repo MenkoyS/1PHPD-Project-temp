@@ -13,12 +13,13 @@ require_once 'db_connect.php';
 </head>
 
 <body>
-    <nav>
+<nav>
         <ul>
             <?php if (isset($_SESSION['username'])) : ?>
                 <li><a href="#">Welcome, <?php echo $_SESSION['username']; ?></a></li>
                 <li><a href="logout.php">Logout</a></li>
                 <li><a href="cart.php">Cart</a></li>
+                <li><a href="ajouter_film.php">Add Movie</a></li>
             <?php else : ?>
                 <li><a href="login-page.php">Register</a></li>
                 <li><a href="login-page.php">Login</a></li>
@@ -60,10 +61,10 @@ require_once 'db_connect.php';
                     echo '</div><div class="posters">';
                 }
                 echo '<div class="poster">';
-                echo '<a href="movie-info.php?id=' . $result['id'] . '"><img src="' . $result['image_link'] . '" alt="' . $result['title'] . '" </a>';
-                echo '<h2><a href="movie-info.php?id=' . $result['id'] . '">' . $result['title'] . '</a></h2>';
+                echo '<a href="movie-info.php?id=' . $result['id'] . '&director=' . $result['director'] .'"><img src="' . $result['image_link'] . '" alt="' . $result['title'] . '" </a>';
+                echo '<h2><a href="movie-info.php?id=' . $result['id'] . '&director=' . $result['director'] .'">' . $result['title'] . '</a></h2>';
                 echo '<h3>Director : ' . $result['director'] . '</h3>';
-                echo '<button><a href="movie-info.php?id=' . $result['id'] . '">View more</a></button>';
+                echo '<button><a href="movie-info.php?id=' . $result['id'] . '&director=' . $result['director'] .'">View more</a></button>';
                 echo '</div>';
                 $count++;
             }
@@ -79,10 +80,10 @@ require_once 'db_connect.php';
 
             foreach ($posters as $poster) {
                 echo '<div class="poster">';
-                echo '<a href="movie-info.php?id=' . $poster['id'] . '"><img src="' . $poster['image_link'] . '" alt="' . $poster['title'] . '" </a>';
-                echo '<h2><a href="movie-info.php?id=' . $poster['id'] . '">' . $poster['title'] . '</a></h2>';
+                echo '<a href="movie-info.php?id=' . $poster['id'] . '&director=' . $poster['director'] .'"><img src="' . $poster['image_link'] . '" alt="' . $poster['title'] . '" </a>';
+                echo '<h2><a href="movie-info.php?id=' . $poster['id'] . '&director=' . $poster['director'] .'">' . $poster['title'] . '</a></h2>';
                 echo '<h3>Director : ' . $poster['director'] . '</h3>';
-                echo '<button><a href="movie-info.php?id=' . $poster['id'] . '">View more</a></button>';
+                echo '<button><a href="movie-info.php?id=' . $poster['id'] . '&director=' . $poster['director'] . '">View more</a></button>';
                 echo '</div>';
             }
         } catch (PDOException $e) {

@@ -3,7 +3,6 @@ require_once 'db_connect.php';
 
 $id = $_GET['id'] ?? null;
 $message = '';
-$director = $_GET['director'] ?? null;
 
 if (!$id) {
     $message = "ID not provided.";
@@ -51,6 +50,7 @@ if (!$id) {
                 <li><a href="#">Welcome, <?php echo $_SESSION['username']; ?></a></li>
                 <li><a href="logout.php">Logout</a></li>
                 <li><a href="cart.php">Cart</a></li>
+                <li><a href="ajouter_film.php">Add Movie</a></li>
             <?php else: ?>
                 <li><a href="login-page.php">Register</a></li>
                 <li><a href="login-page.php">Login</a></li>
@@ -71,6 +71,8 @@ if (!$id) {
     <div class="divcenter">
         <h1><?php echo $film['title']; ?></h1>
         <img src="<?php echo $film['image_link']; ?>" alt="Film poster" draggable="False">
+        <h2>Director :</h2>
+        <h3><?php echo $film['director']; ?></h3>
         <h2>Actors :</h2>
         <h3><?php echo $film['actors']; ?></h3>
         <h2>Price : <?php echo $film['price']; ?> $</h2>
@@ -92,7 +94,10 @@ if (!$id) {
             <?php
             $count = 0;
             try {
-                $stmt = $pdo->query("SELECT * FROM film ORDER BY id LIMIT 3");
+                $director = $_GET['director'];
+                $stmt = $pdo->prepare("SELECT * FROM film WHERE director = :director");
+                $stmt->bindParam(':director', $director);
+                $stmt->execute();
                 $posters = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach ($posters as $poster) {
@@ -100,10 +105,10 @@ if (!$id) {
                         echo '</div><div class="posters">';
                     }
                     echo '<div class="poster">';
-                    echo '<a href="movie-info.php?id=' . $poster['id'] . '"><img src="' . $poster['image_link'] . '" alt="' . $poster['title'] . '" </a>';
-                    echo '<h2><a href="movie-info.php?id=' . $poster['id'] . '">' . $poster['title'] . '</a></h2>';
+                    echo '<a href="movie-info.php?id=' . $poster['id'] . '&director=' . $poster['director'] .'"><img src="' . $poster['image_link'] . '" alt="' . $poster['title'] . '" </a>';
+                    echo '<h2><a href="movie-info.php?id=' . $poster['id'] . '&director=' . $poster['director'] .'">' . $poster['title'] . '</a></h2>';
                     echo '<h3>Director : ' . $poster['director'] . '</h3>';
-                    echo '<button><a href="movie-info.php?id=' . $poster['id'] . '">View more</a></button>';
+                    echo '<button><a href="movie-info.php?id=' . $poster['id'] . '&director=' . $poster['director'] . '">View more</a></button>';
                     echo '</div>';
                     $count++;
                 }

@@ -62,6 +62,27 @@ try {
 </head>
 
 <body>
+<nav>
+        <ul>
+            <?php if (isset($_SESSION['username'])) : ?>
+                <li><a href="#">Welcome, <?php echo $_SESSION['username']; ?></a></li>
+                <li><a href="logout.php">Logout</a></li>
+                <li><a href="cart.php">Cart</a></li>
+                <li><a href="ajouter_film.php">Add Movie</a></li>
+            <?php else : ?>
+                <li><a href="login-page.php">Register</a></li>
+                <li><a href="login-page.php">Login</a></li>
+            <?php endif; ?>
+            <li><a href="index.php">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Genre <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="./action.php">Action</a>
+                    <a href="./drama.php">Drama</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
     <h1><?php echo $cartTitle; ?></h1>
 
     <?php if (!isset($_SESSION['username'])) : ?>

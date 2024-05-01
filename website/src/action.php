@@ -23,10 +23,18 @@ try {
 
 <body>
 
-    <nav>
+<nav>
         <ul>
+            <?php if (isset($_SESSION['username'])) : ?>
+                <li><a href="#">Welcome, <?php echo $_SESSION['username']; ?></a></li>
+                <li><a href="logout.php">Logout</a></li>
+                <li><a href="cart.php">Cart</a></li>
+                <li><a href="ajouter_film.php">Add Movie</a></li>
+            <?php else : ?>
+                <li><a href="login-page.php">Register</a></li>
+                <li><a href="login-page.php">Login</a></li>
+            <?php endif; ?>
             <li><a href="index.php">Home</a></li>
-            <li><a href="about.php">About</a></li>
             <li class="dropdown">
                 <a href="#" class="dropbtn">Genre <i class="fa fa-angle-down"></i></a>
                 <div class="dropdown-content">

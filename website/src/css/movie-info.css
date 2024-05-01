@@ -1,6 +1,6 @@
 body {
   color: white;
-  background-color: red;
+  background-color: black;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
 }
@@ -61,14 +61,37 @@ nav ul li a:hover {
   background-color: purple;
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 h1 {
   font-size: 50px;
 }
 
 h2 {
   font-size: 35px;
-  padding-top: 1%;
-  padding-bottom: 1%;
+}
+
+h3{
+  font-size: 25px;
+}
+
+.poster h2 a{
+  color: black;
+  text-decoration: none;
+}
+
+.poster h3{
+  color: black;
 }
 
 .posters {
@@ -91,14 +114,44 @@ h2 {
   border-radius: 10px;
 }
 
-img:hover{
+.poster button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.poster button:hover {
+  background-color: #333;
+}
+
+.poster button:focus {
+  outline: none;
+}
+
+button a {
+  color: white;
+  text-decoration: none;
+}
+
+img:hover {
   transform: scale(1.1);
   transition: transform 0.5s;
 }
 
-.divcenter{
+.divcenter {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divcenter img{
+  max-height: auto;
+  max-width: 300px;
 }
 
 .divcenter button {
@@ -124,11 +177,9 @@ img:hover{
   top: 0;
   border-radius: 0.6em;
   margin-top: -0.25em;
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.3)
-  );
+  background-image: linear-gradient(rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.3));
 }
 
 .label {
@@ -184,18 +235,7 @@ footer img {
   max-width: 400px;
 }
 
-.imgFooter a img:hover{
+.imgFooter a img:hover {
   transform: scale(1.1);
   transition: transform 0.5s;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
