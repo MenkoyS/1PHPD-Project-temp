@@ -16,7 +16,7 @@ if (!$id) {
         if (!$film) {
             $message = "Film not found.";
         } else {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['username'])) {
                 try {
                     $stmt = $pdo->prepare("UPDATE film SET in_cart = 1 WHERE id = :id");
                     $stmt->bindParam(':id', $id);
@@ -26,6 +26,8 @@ if (!$id) {
                 } catch (PDOException $e) {
                     $message = "Erreur : Le film n'a pas été ajouté au panier : " . $e->getMessage();
                 }
+            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_SESSION['username'])) {
+                $message = "Vous devez être connecté pour ajouter un élément au panier.";
             }
         }
     } catch (PDOException $e) {
@@ -66,11 +68,11 @@ if (!$id) {
         </ul>
     </nav>
 
-
-
     <div class="divcenter">
         <h1><?php echo $film['title']; ?></h1>
         <img src="<?php echo $film['image_link']; ?>" alt="Film poster" draggable="False">
+        <h2>Description :</h2>
+        <h3><?php echo $film['description']; ?></h3>
         <h2>Director :</h2>
         <h3><?php echo $film['director']; ?></h3>
         <h2>Actors :</h2>

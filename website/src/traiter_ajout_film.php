@@ -7,12 +7,14 @@ try {
     $title = $_POST['titre'];
     $director = $_POST['realisateur'];
     $actors = $_POST['auteurs'];
+    $description = $_POST['description']; 
 
-    $stmt = $pdo->prepare("INSERT INTO film (genre, image_link, title, director, actors) VALUES (:genre, :image_link, :title, :director, :actors)");
+    $stmt = $pdo->prepare("INSERT INTO film (genre, image_link, title, description, director, actors) VALUES (:genre, :image_link, :title, :description, :director, :actors)");
 
     $stmt->bindParam(':genre', $genre);
     $stmt->bindParam(':image_link', $image_link);
     $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':description', $description);
     $stmt->bindParam(':director', $director);
     $stmt->bindParam(':actors', $actors);
 
