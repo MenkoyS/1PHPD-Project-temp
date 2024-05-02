@@ -18,7 +18,7 @@
    - Consultez la section "Films Récents" pour découvrir les derniers ajouts à notre collection.
 
 3. **Upload de Posters**
-   - Si vous êtes connecté, vous pouvez télécharger des posters de films pour les ajouter à notre base de données.
+   - Si vous êtes connecté, vous pouvez créer des posters de films sur notre site.
 
 4. **Panier**
    - Si vous êtes connecté, utilisez la fonctionnalité de panier pour ajouter des films que vous souhaitez regarder ultérieurement.

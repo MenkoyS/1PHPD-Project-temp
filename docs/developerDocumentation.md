@@ -29,7 +29,7 @@ Ce document vise à fournir des instructions et des informations techniques pour
      ```
 
 2. **Arborescence des fichiers**
-   Pour visualiser l'arborescence des fichiers du projet, veuillez consulter le fichier [d'arborescence 'tree.txt'](tree.txt).    
+   Pour visualiser l'arborescence des fichiers du projet, veuillez consulter le fichier [d'arborescence 'tree.txt'](../tree.txt).    
 
 3. **Configuration Docker**
    - Utilisez la commande `docker-compose up -d --build` (pour Windows) ou `sudo docker-compose up -d --build` (pour Linux) pour démarrer les conteneurs Docker.
@@ -41,7 +41,7 @@ Ce document vise à fournir des instructions et des informations techniques pour
 ## Installation de la Base de Données
 
 1. **Importation de la Base de Données**
-   - Copier coller le script [de la database SQL](my_db.sql) dans "SQL" sur phpMyAdmin afin d'avoir toutes les informations récentes de la database ou alors juste importer le fichier en le téléchargeant.
+   - Copier coller le script [de la database SQL](../db/my_db.sql) dans "SQL" sur phpMyAdmin afin d'avoir toutes les informations récentes de la database ou alors juste importer le fichier en le téléchargeant.
 
 ## Utilisation de l'API
 
@@ -75,11 +75,3 @@ Ce document vise à fournir des instructions et des informations techniques pour
 2. **Mesures de Sécurité Additionnelles**
    - Utilisation de méthodes d'authentification et de mots de passes pour restreindre l'accès à certaines fonctionnalités de l'API.
    - Implémentation de contrôles d'accès pour éviter les accès non autorisés à certaines parties du site. Notamment le fait que certains accès bloquent la connexion et renvoient sur le index.php ou envoient un message d'erreur.
-
-## Accès au Site et à la Base de Données
-
-1. **Accès au Site**
-   - Utilisez l'URL `localhost` pour accéder au site et naviguer dans ses fonctionnalités.
-
-2. **Accès à la Base de Données**
-   - Utilisez l'URL `localhost:8081` pour accéder à phpMyAdmin et gérer la base de données.
