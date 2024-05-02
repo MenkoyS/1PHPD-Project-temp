@@ -44,15 +44,19 @@ function validateForm() {
   var genre = document.getElementById("genre").value;
   var image = document.getElementById("image").value;
   var titre = document.getElementById("titre").value;
+  var description = document.getElementById("description").value;
   var realisateur = document.getElementById("realisateur").value;
   var auteurs = document.getElementById("auteursHidden").value;
+  var prix = document.getElementById("prix").value;
 
   if (
     genre === "" ||
     image === "" ||
     titre === "" ||
+    description === "" ||
     realisateur === "" ||
-    auteurs === ""
+    auteurs === "" ||
+    prix === ""
   ) {
     alert("Veuillez remplir tous les champs obligatoires.");
     return false;
